@@ -113,7 +113,15 @@ backgroundSubmit = function (formElement, submitCallback) {
 */
 afterSubmit = function() {
     // Now start the download
-    window.open("{{ ASSET_SERVER_URL }}d72b8df2-ebook_OpenStack_Made_Easy_20160726.pdf", "_blank");
+    link = document.createElement('a');
+    link.href = "{{ ASSET_SERVER_URL }}d72b8df2-ebook_OpenStack_Made_Easy_20160726.pdf";
+    link.download = true;
+    link.click();
+    // And redirect to the instructions page
+    window.setTimeout(
+        function () {window.location.href = "/{{ url|default:'download/cloud'}}#instructions";},
+        1000
+    );
 }
 
 /**
